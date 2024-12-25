@@ -1,122 +1,180 @@
 
 <!DOCTYPE html>
-<html lang="az">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rus dili səviyyə testi</title>
+    <title>Rus dili səviyyəni sərbəst şəkildə təyin etmək üçün test</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+            padding: 20px;
         }
         h1 {
             text-align: center;
-            color: #2c3e50;
+            font-size: 24px;
+            margin-bottom: 20px;
         }
         .question {
-            margin-bottom: 15px;
+            margin: 20px 0;
+            font-size: 18px;
         }
         .answers {
             margin-left: 20px;
         }
         .answers label {
             display: block;
-            margin-bottom: 5px;
+            margin: 5px 0;
         }
-        .result {
-            margin-top: 20px;
-            padding: 15px;
-            border: 2px solid #2c3e50;
-            background-color: #ecf0f1;
+        .button-container {
+            text-align: center;
+            margin-top: 30px;
         }
-        button {
-            display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
-            background-color: #2c3e50;
+        .btn {
+            background-color: #4CAF50;
             color: white;
+            padding: 10px 20px;
             border: none;
             cursor: pointer;
+            font-size: 16px;
         }
-        button:hover {
-            background-color: #34495e;
+        .btn:hover {
+            background-color: #45a049;
+        }
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
+
     <h1>Rus dili səviyyəni sərbəst şəkildə təyin etmək üçün test</h1>
-    <form id="quiz-form">
-        <div id="questions">
-            <!-- Вопросы будут добавлены через JavaScript -->
+
+    <form id="quizForm">
+        <!-- Вопросы уровня A1 -->
+        <div class="question">
+            <p>1. Какое слово является синонимом слова "большой"?</p>
+            <div class="answers">
+                <label><input type="radio" name="q1" value="a" onclick="calculateResult()"> a) маленький</label>
+                <label><input type="radio" name="q1" value="b" onclick="calculateResult()"> b) огромный</label>
+                <label><input type="radio" name="q1" value="c" onclick="calculateResult()"> c) высокий</label>
+                <label><input type="radio" name="q1" value="d" onclick="calculateResult()"> d) тёплый</label>
+                <label><input type="radio" name="q1" value="e" onclick="calculateResult()"> e) bilmirəm</label>
+            </div>
         </div>
-        <button type="button" onclick="calculateResult()">Testi bitir</button>
+
+        <div class="question">
+            <p>2. Какой из этих вариантов правильный?</p>
+            <div class="answers">
+                <label><input type="radio" name="q2" value="a" onclick="calculateResult()"> a) Я иду в магазин.</label>
+                <label><input type="radio" name="q2" value="b" onclick="calculateResult()"> b) Я иду на магазин.</label>
+                <label><input type="radio" name="q2" value="c" onclick="calculateResult()"> c) Я иду к магазин.</label>
+                <label><input type="radio" name="q2" value="d" onclick="calculateResult()"> d) Я иду по магазин.</label>
+                <label><input type="radio" name="q2" value="e" onclick="calculateResult()"> e) bilmirəm</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>3. Какое слово является антонимом слова "тёмный"?</p>
+            <div class="answers">
+                <label><input type="radio" name="q3" value="a" onclick="calculateResult()"> a) светлый</label>
+                <label><input type="radio" name="q3" value="b" onclick="calculateResult()"> b) чёрный</label>
+                <label><input type="radio" name="q3" value="c" onclick="calculateResult()"> c) синий</label>
+                <label><input type="radio" name="q3" value="d" onclick="calculateResult()"> d) длинный</label>
+                <label><input type="radio" name="q3" value="e" onclick="calculateResult()"> e) bilmirəm</label>
+            </div>
+        </div>
+
+        <!-- Вопросы уровня A2 -->
+        <div class="question">
+            <p>4. Какой правильный вариант?</p>
+            <div class="answers">
+                <label><input type="radio" name="q4" value="a" onclick="calculateResult()"> a) Он работает в офисе.</label>
+                <label><input type="radio" name="q4" value="b" onclick="calculateResult()"> b) Он работает на офис.</label>
+                <label><input type="radio" name="q4" value="c" onclick="calculateResult()"> c) Он работает с офисом.</label>
+                <label><input type="radio" name="q4" value="d" onclick="calculateResult()"> d) Он работает по офису.</label>
+                <label><input type="radio" name="q4" value="e" onclick="calculateResult()"> e) bilmirəm</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>5. Какое слово не является существительным?</p>
+            <div class="answers">
+                <label><input type="radio" name="q5" value="a" onclick="calculateResult()"> a) бегать</label>
+                <label><input type="radio" name="q5" value="b" onclick="calculateResult()"> b) стол</label>
+                <label><input type="radio" name="q5" value="c" onclick="calculateResult()"> c) машина</label>
+                <label><input type="radio" name="q5" value="d" onclick="calculateResult()"> d) книга</label>
+                <label><input type="radio" name="q5" value="e" onclick="calculateResult()"> e) bilmirəm</label>
+            </div>
+        </div>
+
+        <!-- Вопросы уровня B1 -->
+        <div class="question">
+            <p>6. Какой вариант правильный?</p>
+            <div class="answers">
+                <label><input type="radio" name="q6" value="a" onclick="calculateResult()"> a) Я купил новую книгу.</label>
+                <label><input type="radio" name="q6" value="b" onclick="calculateResult()"> b) Я купил новый книга.</label>
+                <label><input type="radio" name="q6" value="c" onclick="calculateResult()"> c) Я купил новой книгу.</label>
+                <label><input type="radio" name="q6" value="d" onclick="calculateResult()"> d) Я купил новую книгой.</label>
+                <label><input type="radio" name="q6" value="e" onclick="calculateResult()"> e) bilmirəm</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <p>7. Какое слово не является синонимом слова "замечательный"?</p>
+            <div class="answers">
+                <label><input type="radio" name="q7" value="a" onclick="calculateResult()"> a) плохой</label>
+                <label><input type="radio" name="q7" value="b" onclick="calculateResult()"> b) хороший</label>
+                <label><input type="radio" name="q7" value="c" onclick="calculateResult()"> c) красивый</label>
+                <label><input type="radio" name="q7" value="d" onclick="calculateResult()"> d) интересный</label>
+                <label><input type="radio" name="q7" value="e" onclick="calculateResult()"> e) bilmirəm</label>
+            </div>
+        </div>
+
+        <!-- Добавляйте остальные вопросы по аналогии до 30 -->
+
+        <div id="result"></div>
     </form>
-    <div id="result" class="result" style="display: none;"></div>
 
     <script>
-        const questions = [
-            { question: "Какое время суток наступает после ночи?", answers: ["день", "утро", "вечер", "ночь", "bilmirəm"], correct: 1 },
-            { question: "Как правильно сказать: 'Я ____ в школе'.", answers: ["учусь", "учит", "учите", "учимся", "bilmirəm"], correct: 0 },
-            { question: "Какое из слов обозначает предмет мебели?", answers: ["стол", "дерево", "собака", "окно", "bilmirəm"], correct: 0 },
-            { question: "Укажите слово, которое обозначает человека:", answers: ["друг", "дерево", "здание", "книга", "bilmirəm"], correct: 0 },
-            { question: "Укажите слово, которое связано с домом:", answers: ["дверь", "машина", "школа", "дорога", "bilmirəm"], correct: 0 },
-            { question: "Какое из слов обозначает транспорт?", answers: ["автобус", "школа", "яблоко", "стол", "bilmirəm"], correct: 0 },
-            { question: "Как правильно завершить фразу: 'Он читает книгу, а я ______ журнал'.", answers: ["читаю", "читал", "читать", "читаешь", "bilmirəm"], correct: 0 },
-            { question: "Выберите правильный перевод: 'Она слушает музыку'.", answers: ["O musiqi dinləyir.", "O musiqi yazır.", "O musiqi gətirir.", "O musiqi göstərir.", "bilmirəm"], correct: 0 },
-            { question: "Какое из предложений в прошедшем времени?", answers: ["Я гулял в парке.", "Я гуляю в парке.", "Я буду гулять в парке.", "Я всегда гуляю в парке.", "bilmirəm"], correct: 0 },
-            { question: "Укажите слово, которое обозначает еду:", answers: ["яблоко", "стул", "книга", "автобус", "bilmirəm"], correct: 0 },
-            { question: "Как правильно завершить: 'Летом люди любят…'", answers: ["купаться в море", "кататься на лыжах", "играть в снежки", "строить снеговиков", "bilmirəm"], correct: 0 },
-            { question: "Какое предложение правильное?", answers: ["Я учусь в университете.", "Я учить в университете.", "Я учат в университете.", "Я учиться в университете.", "bilmirəm"], correct: 0 },
-            { question: "Какое слово обозначает профессию?", answers: ["врач", "окно", "река", "яблоко", "bilmirəm"], correct: 0 },
-            { question: "Укажите правильное продолжение: 'Когда идёт дождь, я беру...'", answers: ["зонт", "перчатки", "пальто", "обувь", "bilmirəm"], correct: 0 },
-            { question: "Укажите слово, связанное с кухней:", answers: ["плита", "компьютер", "диван", "кровать", "bilmirəm"], correct: 0 }
-        ];
-
-        const questionContainer = document.getElementById('questions');
-
-        questions.forEach((q, index) => {
-            const questionDiv = document.createElement('div');
-            questionDiv.classList.add('question');
-            questionDiv.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
-
-            const answersDiv = document.createElement('div');
-            answersDiv.classList.add('answers');
-            
-            q.answers.forEach((answer, i) => {
-                const id = `q${index}-a${i}`;
-                answersDiv.innerHTML += `
-                    <label>
-                        <input type="radio" name="q${index}" value="${i}" id="${id}">
-                        ${answer}
-                    </label>`;
-            });
-            
-            questionDiv.appendChild(answersDiv);
-            questionContainer.appendChild(questionDiv);
-        });
+        const correctAnswersArray = ['b', 'a', 'a', 'a', 'a', 'a', 'a']; // Пример правильных ответов. Обновите до 30.
 
         function calculateResult() {
             let correctAnswers = 0;
-            
-            questions.forEach((q, index) => {
-                const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && parseInt(selected.value) === q.correct) {
+            let totalQuestions = 7; // Обновите количество вопросов до 30.
+
+            // Проход по всем вопросам
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selectedAnswer = document.querySelector(`input[name="q${i}"]:checked`);
+                if (selectedAnswer && selectedAnswer.value === correctAnswersArray[i - 1]) {
                     correctAnswers++;
                 }
-            });
+            }
 
-            const resultDiv = document.getElementById('result');
-            resultDiv.style.display = 'block';
+            // Определение уровня
+            let level = '';
+            if (correctAnswers <= 5) {
+                level = 'A1';
+            } else if (correctAnswers <= 10) {
+                level = 'A2';
+            } else if (correctAnswers <= 15) {
+                level = 'B1';
+            } else if (correctAnswers <= 20) {
+                level = 'B2';
+            } else if (correctAnswers <= 25) {
+                level = 'C1';
+            } else {
+                level = 'C2';
+            }
 
-            if (correctAnswers <= 5) resultDiv.textContent = `Səviyyəniz: A1 (${correctAnswers}/30 doğru)`;
-            else if (correctAnswers <= 10) resultDiv.textContent = `Səviyyəniz: A2 (${correctAnswers}/30 doğru)`;
-            else if (correctAnswers <= 15) resultDiv.textContent = `Səviyyəniz: B1 (${correctAnswers}/30 doğru)`;
-            else if (correctAnswers <= 20) resultDiv.textContent = `Səviyyəniz: B2 (${correctAnswers}/30 doğru)`;
-            else if (correctAnswers <= 25) resultDiv.textContent = `Səviyyəniz: C1 (${correctAnswers}/30 doğru)`;
-            else resultDiv.textContent = `Səviyyəniz: C2 (${correctAnswers}/30 doğru)`;
+            // Вывод результата на экран на азербайджанском языке
+            document.getElementById('result').innerHTML = `Siz ${correctAnswers} düzgün cavab verdiniz. Sizin səviyyəniz: ${level}`;
         }
     </script>
+
 </body>
 </html>
