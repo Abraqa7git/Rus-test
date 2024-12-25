@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="az">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rus dili səviyyə testi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            line-height: 1.6;
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .question {
+            margin-bottom: 15px;
+        }
+        .answers {
+            margin-left: 20px;
+        }
+        .answers label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border: 2px solid #2c3e50;
+            background-color: #ecf0f1;
+        }
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #34495e;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rus dili səviyyəni sərbəst şəkildə təyin etmək üçün test</h1>
+    <form id="quiz-form">
+        <div id="questions">
+            <!-- Вопросы будут добавлены через JavaScript -->
+        </div>
+        <button type="button" onclick="calculateResult()">Testi bitir</button>
+    </form>
+    <div id="result" class="result" style="display: none;"></div>
+
+    <script>
+        const questions = [
+            { question: "Какое время суток наступает после ночи?", answers: ["день", "утро", "вечер", "ночь", "bilmirəm"], correct: 1 },
+            { question: "Как правильно сказать: 'Я ____ в школе'.", answers: ["учусь", "учит", "учите", "учимся", "bilmirəm"], correct: 0 },
+            { question: "Какое из слов обозначает предмет мебели?", answers: ["стол", "дерево", "собака", "окно", "bilmirəm"], correct: 0 },
+            { question: "Укажите слово, которое обозначает человека:", answers: ["друг", "дерево", "здание", "книга", "bilmirəm"], correct: 0 },
+            { question: "Укажите слово, которое связано с домом:", answers: ["дверь", "машина", "школа", "дорога", "bilmirəm"], correct: 0 },
+            { question: "Какое из слов обозначает транспорт?", answers: ["автобус", "школа", "яблоко", "стол", "bilmirəm"], correct: 0 },
+            { question: "Как правильно завершить фразу: 'Он читает книгу, а я ______ журнал'.", answers: ["читаю", "читал", "читать", "читаешь", "bilmirəm"], correct: 0 },
+            { question: "Выберите правильный перевод: 'Она слушает музыку'.", answers: ["O musiqi dinləyir.", "O musiqi yazır.", "O musiqi gətirir.", "O musiqi göstərir.", "bilmirəm"], correct: 0 },
+            { question: "Какое из предложений в прошедшем времени?", answers: ["Я гулял в парке.", "Я гуляю в парке.", "Я буду гулять в парке.", "Я всегда гуляю в парке.", "bilmirəm"], correct: 0 },
+            { question: "Укажите слово, которое обозначает еду:", answers: ["яблоко", "стул", "книга", "автобус", "bilmirəm"], correct: 0 },
+            { question: "Как правильно завершить: 'Летом люди любят…'", answers: ["купаться в море", "кататься на лыжах", "играть в снежки", "строить снеговиков", "bilmirəm"], correct: 0 },
+            { question: "Какое предложение правильное?", answers: ["Я учусь в университете.", "Я учить в университете.", "Я учат в университете.", "Я учиться в университете.", "bilmirəm"], correct: 0 },
+            { question: "Какое слово обозначает профессию?", answers: ["врач", "окно", "река", "яблоко", "bilmirəm"], correct: 0 },
+            { question: "Укажите правильное продолжение: 'Когда идёт дождь, я беру...'", answers: ["зонт", "перчатки", "пальто", "обувь", "bilmirəm"], correct: 0 },
+            { question: "Укажите слово, связанное с кухней:", answers: ["плита", "компьютер", "диван", "кровать", "bilmirəm"], correct: 0 }
+        ];
+
+        const questionContainer = document.getElementById('questions');
+
+        questions.forEach((q, index) => {
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('question');
+            questionDiv.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
+
+            const answersDiv = document.createElement('div');
+            answersDiv.classList.add('answers');
+            
+            q.answers.forEach((answer, i) => {
+                const id = `q${index}-a${i}`;
+                answersDiv.innerHTML += `
+                    <label>
+                        <input type="radio" name="q${index}" value="${i}" id="${id}">
+                        ${answer}
+                    </label>`;
+            });
+            
+            questionDiv.appendChild(answersDiv);
+            questionContainer.appendChild(questionDiv);
+        });
+
+        function calculateResult() {
+            let correctAnswers = 0;
+            
+            questions.forEach((q, index) => {
+                const selected = document.querySelector(`input[name="q${index}"]:checked`);
+                if (selected && parseInt(selected.value) === q.correct) {
+                    correctAnswers++;
+                }
+            });
+
+            const resultDiv = document.getElementById('result');
+            resultDiv.style.display = 'block';
+
+            if (correctAnswers <= 5) resultDiv.textContent = `Səviyyəniz: A1 (${correctAnswers}/30 doğru)`;
+            else if (correctAnswers <= 10) resultDiv.textContent = `Səviyyəniz: A2 (${correctAnswers}/30 doğru)`;
+            else if (correctAnswers <= 15) resultDiv.textContent = `Səviyyəniz: B1 (${correctAnswers}/30 doğru)`;
+            else if (correctAnswers <= 20) resultDiv.textContent = `Səviyyəniz: B2 (${correctAnswers}/30 doğru)`;
+            else if (correctAnswers <= 25) resultDiv.textContent = `Səviyyəniz: C1 (${correctAnswers}/30 doğru)`;
+            else resultDiv.textContent = `Səviyyəniz: C2 (${correctAnswers}/30 doğru)`;
+        }
+    </script>
+</body>
+</html>
