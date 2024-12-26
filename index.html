@@ -60,7 +60,7 @@
     </form>
     <div id="result" class="result" style="display: none;"></div>
 
-       <script>
+    <script>
         const questions = [
             // A1 (1-5)
             { question: "Какое слово обозначает предмет мебели?", answers: ["стол", "яблоко", "ручка", "окно", "bilmirəm"], correct: 0 },
@@ -100,81 +100,56 @@
             { question: "Как перевести 'дождь идёт' на азербайджанский язык?", answers: ["Yağış yağır.", "Günəş çıxır.", "Qar yağır.", "Hava buludludur.", "bilmirəm"], correct: 4 }
         ];
 
-      
-
-        let currentQuestion = 0;
-        const totalQuestions = questions.length;
-
-        const questionContainer = document.getElementById('questions');
-        const nextButton = document.querySelector('#controls button:first-child');
-        const finishButton = document.querySelector('#controls button:last-child');
-
-        questions.forEach((q, index) => {
-            const questionDiv = document.createElement('div');
-            questionDiv.classList.add('question');
-            questionDiv.innerHTML = `<p>${index + 1}. ${q.question}</p>`;
-
-            const answersDiv = document.createElement('div');
-            answersDiv.classList.add('answers');
-            
-            q.answers.forEach((answer, i) => {
-                const id = `q${index}-a${i}`;
-                answersDiv.innerHTML += `
-                    <label>
-                        <input type="radio" name="q${index}" value="${i}" id="${id}">
-                        ${answer}
-                    </label>`;
-            });
-            
-            questionDiv.appendChild(answersDiv);
-            questionContainer.appendChild(questionDiv);
-        });
+        let currentQuestionIndex = 0;
+        let correctAnswers = 0;
 
         function showNextQuestion() {
-            if (currentQuestion > 0) {
-                const selected = document.querySelector(`input[name="q${currentQuestion - 1}"]:checked`);
-                if (!selected) {
-                    alert("Выберите вариант ответа, прежде чем продолжить!");
-                    return;
-                }
-            }
+            const currentQuestion = questions[currentQuestionIndex];
+            let questionHtml = `<div class="question" id="question-${currentQuestionIndex}">`;
+            questionHtml += `<p>${currentQuestion.question}</p><div class="answers">`;
 
-            const allQuestions = document.querySelectorAll('.question');
-            if (currentQuestion < totalQuestions) {
-                if (currentQuestion > 0) allQuestions[currentQuestion - 1].style.display = 'none';
-                allQuestions[currentQuestion].style.display = 'block';
-                currentQuestion++;
-            }
-
-            if (currentQuestion === totalQuestions) {
-                nextButton.style.display = 'none';
-                finishButton.style.display = 'inline-block';
+            currentQuestion.answers.forEach((answer, index) => {
+                questionHtml += `<label><input type="radio" name="question${currentQuestionIndex}" value="${index}"> ${answer}</label>`;
+            });
+            questionHtml += `</div></div>`;
+            document.getElementById("questions").innerHTML = questionHtml;
+            
+            // Show the "Next Question" button only after the question is loaded
+            if (currentQuestionIndex === questions.length - 1) {
+                document.querySelector("#controls button:nth-child(2)").style.display = "block"; // Show the finish button
             }
         }
 
         function calculateResult() {
-            let correctAnswers = 0;
-
-            questions.forEach((q, index) => {
-                const selected = document.querySelector(`input[name="q${index}"]:checked`);
-                if (selected && parseInt(selected.value) === q.correct) {
+            // Calculate correct answers
+            const answers = document.querySelectorAll("input[type='radio']:checked");
+            answers.forEach(answer => {
+                const questionIndex = parseInt(answer.name.replace("question", ""));
+                if (parseInt(answer.value) === questions[questionIndex].correct) {
                     correctAnswers++;
                 }
             });
 
-            const resultDiv = document.getElementById('result');
-            resultDiv.style.display = 'block';
+            let level = "";
+            if (correctAnswers <= 5) {
+                level = "A1";
+            } else if (correctAnswers <= 10) {
+                level = "A2";
+            } else if (correctAnswers <= 15) {
+                level = "B1";
+            } else if (correctAnswers <= 20) {
+                level = "B2";
+            } else if (correctAnswers <= 25) {
+                level = "C1";
+            } else {
+                level = "C2";
+            }
 
-            if (correctAnswers <= 5) resultDiv.textContent = `Səviyyəniz: A1 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
-            else if (correctAnswers <= 10) resultDiv.textContent = `Səviyyəniz: A2 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
-            else if (correctAnswers <= 15) resultDiv.textContent = `Səviyyəniz: B1 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
-            else if (correctAnswers <= 20) resultDiv.textContent = `Səviyyəniz: B2 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
-            else if (correctAnswers <= 25) resultDiv.textContent = `Səviyyəniz: C1 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
-            else resultDiv.textContent = `Səviyyəniz: C2 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
-
-            document.getElementById('quiz-form').style.display = 'none';
+            document.getElementById("result").style.display = "block";
+            document.getElementById("result").innerHTML = `Ваш уровень: ${level}. Правильных ответов: ${correctAnswers}`;
         }
 
+        // Initial function to show the first question
         showNextQuestion();
     </script>
 </body>
