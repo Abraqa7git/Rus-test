@@ -63,41 +63,41 @@
     <script>
         const questions = [
             // A1 (1-5)
-            { question: "Как переводится слово 'дом'?", answers: ["car", "house", "book", "tree", "bilmirəm"], correct: 1 },
-            { question: "Какой цвет является основным?", answers: ["красный", "зелёный", "жёлтый", "чёрный", "bilmirəm"], correct: 0 },
-            { question: "Какое слово обозначает животное?", answers: ["собака", "стол", "яблоко", "книга", "bilmirəm"], correct: 0 },
-            { question: "Какое слово обозначает время суток?", answers: ["утро", "яблоко", "стол", "окно", "bilmirəm"], correct: 0 },
-            { question: "Как называется предмет, на котором сидят?", answers: ["стул", "лампа", "пол", "телефон", "bilmirəm"], correct: 0 },
+            { question: "Какое слово обозначает предмет мебели?", answers: ["окно", "стол", "собака", "река", "bilmirəm"], correct: 1 },
+            { question: "Как правильно написать: 'Я ___ в школе.'?", answers: ["учусь", "учит", "учите", "учился", "bilmirəm"], correct: 0 },
+            { question: "Какое слово обозначает время суток?", answers: ["ночь", "дерево", "вода", "книга", "bilmirəm"], correct: 0 },
+            { question: "Какой цвет является основным?", answers: ["красный", "зимний", "горячий", "осенний", "bilmirəm"], correct: 0 },
+            { question: "Как перевести 'книга' на азербайджанский язык?", answers: ["qələm", "dəftər", "kitab", "saat", "bilmirəm"], correct: 2 },
             // A2 (6-10)
-            { question: "Как пишется слово 'здравствуйте'?", answers: ["здр", "здравствуйте", "здрвстите", "здрвствуйте", "bilmirəm"], correct: 1 },
-            { question: "Как переводится слово 'книга'?", answers: ["book", "lamp", "window", "door", "bilmirəm"], correct: 0 },
-            { question: "Как правильно завершить предложение: 'Я люблю читать ______'?", answers: ["книги", "машины", "стены", "дороги", "bilmirəm"], correct: 0 },
-            { question: "Какое из слов обозначает человека?", answers: ["учитель", "дерево", "стол", "река", "bilmirəm"], correct: 0 },
-            { question: "Какое слово обозначает еду?", answers: ["хлеб", "стул", "яблоко", "книга", "bilmirəm"], correct: 0 },
+            { question: "Как перевести 'я иду в магазин' на азербайджанский язык?", answers: ["Mən mağazaya gedirəm.", "Mən evə gedirəm.", "Mən məktəbə gedirəm.", "Mən bağa gedirəm.", "bilmirəm"], correct: 0 },
+            { question: "Как правильно сказать: 'Вечером мы часто ______ фильм.'?", answers: ["смотрим", "смотрел", "смотрю", "смотреть", "bilmirəm"], correct: 0 },
+            { question: "Какое слово обозначает транспорт?", answers: ["автобус", "книга", "яблоко", "дерево", "bilmirəm"], correct: 0 },
+            { question: "Какой падеж отвечает на вопрос 'кого?'?", answers: ["родительный", "винительный", "творительный", "предложный", "bilmirəm"], correct: 1 },
+            { question: "Какое предложение правильное?", answers: ["Я читаю книгу.", "Я читает книгу.", "Я читал книга.", "Я читаете книгу.", "bilmirəm"], correct: 0 },
             // B1 (11-15)
-            { question: "Какое из слов обозначает транспорт?", answers: ["автобус", "дерево", "окно", "яблоко", "bilmirəm"], correct: 0 },
-            { question: "Какое слово является прилагательным?", answers: ["красивый", "идти", "машина", "дерево", "bilmirəm"], correct: 0 },
-            { question: "Какое слово является антонимом к слову 'холодно'?", answers: ["жарко", "лето", "мороз", "снег", "bilmirəm"], correct: 0 },
-            { question: "Какое из слов является глаголом?", answers: ["читать", "дерево", "зима", "стол", "bilmirəm"], correct: 0 },
-            { question: "Какое из предложений является правильным?", answers: ["Я иду домой.", "Он читает книга.", "Мы иду в парк.", "Ты будет гулять.", "bilmirəm"], correct: 0 },
+            { question: "Какой глагол стоит в прошедшем времени?", answers: ["читал", "читаю", "читать", "буду читать", "bilmirəm"], correct: 0 },
+            { question: "Как правильно перевести 'мы играем в футбол'?", answers: ["Biz futbol oynayırıq.", "Biz futbol oxuyuruq.", "Biz futbol gəlirik.", "Biz futbol yazırıq.", "bilmirəm"], correct: 0 },
+            { question: "Какое слово является синонимом к слову 'большой'?", answers: ["огромный", "маленький", "лёгкий", "синий", "bilmirəm"], correct: 0 },
+            { question: "Какое слово обозначает профессию?", answers: ["учитель", "книга", "яблоко", "вода", "bilmirəm"], correct: 0 },
+            { question: "Как перевести 'сегодня тепло' на азербайджанский язык?", answers: ["Bu gün isti havadır.", "Bu gün soyuqdur.", "Bu gün yağış yağır.", "Bu gün çox küləkdir.", "bilmirəm"], correct: 0 },
             // B2 (16-20)
-            { question: "Какое из предложений является в будущем времени?", answers: ["Я буду читать.", "Я читал книгу.", "Я читаю книгу.", "Я прочитал книгу.", "bilmirəm"], correct: 0 },
-            { question: "Как переводится слово 'важный'?", answers: ["important", "fast", "strong", "big", "bilmirəm"], correct: 0 },
-            { question: "Какое слово является синонимом к слову 'большой'?", answers: ["огромный", "маленький", "красивый", "важный", "bilmirəm"], correct: 0 },
-            { question: "Какое слово обозначает профессию?", answers: ["врач", "окно", "река", "яблоко", "bilmirəm"], correct: 0 },
-            { question: "Какое из слов связано с кухней?", answers: ["холодильник", "кровать", "диван", "окно", "bilmirəm"], correct: 0 },
+            { question: "Какое предложение является вопросительным?", answers: ["Ты идёшь в школу?", "Я читаю книгу.", "Мы будем гулять.", "Они смотрели фильм.", "bilmirəm"], correct: 0 },
+            { question: "Как правильно перевести 'завтра я буду работать'?", answers: ["Sabah mən işləyəcəyəm.", "Sabah mən oxuyacağam.", "Sabah mən gələcəyəm.", "Sabah mən dinləyəcəyəm.", "bilmirəm"], correct: 0 },
+            { question: "Какое слово является антонимом к слову 'быстрый'?", answers: ["медленный", "тяжёлый", "лёгкий", "светлый", "bilmirəm"], correct: 0 },
+            { question: "Какое из предложений в будущем времени?", answers: ["Я пойду домой.", "Я иду домой.", "Я шёл домой.", "Я пришёл домой.", "bilmirəm"], correct: 0 },
+            { question: "Как перевести 'зимой холодно' на азербайджанский язык?", answers: ["Qışda soyuqdur.", "Qışda yağış yağır.", "Yayda soyuqdur.", "Payızda soyuqdur.", "bilmirəm"], correct: 0 },
             // C1 (21-25)
-            { question: "Какое слово обозначает инструмент?", answers: ["молоток", "дерево", "ручка", "стол", "bilmirəm"], correct: 0 },
-            { question: "Какое слово является синонимом к слову 'надежда'?", answers: ["ожидание", "страх", "потеря", "радость", "bilmirəm"], correct: 0 },
-            { question: "Как правильно завершить: 'Если бы я был богатым, я бы ______ мир'.", answers: ["объехал", "поехал", "купил", "смотрел", "bilmirəm"], correct: 0 },
-            { question: "Какой падеж отвечает на вопрос 'кого?'?", answers: ["родительный", "именительный", "винительный", "творительный", "bilmirəm"], correct: 0 },
-            { question: "Какое предложение выражает сомнение?", answers: ["Возможно, завтра пойдёт дождь.", "Я уверен, что будет солнце.", "Сегодня отличная погода.", "На улице тепло.", "bilmirəm"], correct: 0 },
+            { question: "Какой стиль речи используется в научной статье?", answers: ["научный", "разговорный", "официальный", "художественный", "bilmirəm"], correct: 0 },
+            { question: "Какое слово является синонимом к слову 'правда'?", answers: ["истина", "ложь", "сомнение", "неправда", "bilmirəm"], correct: 0 },
+            { question: "Какой термин обозначает науку о языке?", answers: ["лингвистика", "биология", "философия", "математика", "bilmirəm"], correct: 0 },
+            { question: "Какое слово является антонимом к слову 'счастье'?", answers: ["горе", "радость", "смех", "удовольствие", "bilmirəm"], correct: 0 },
+            { question: "Какое из предложений выражает условие?", answers: ["Если будет дождь, я возьму зонт.", "Я пойду в магазин.", "Я читаю книгу.", "На улице идёт дождь.", "bilmirəm"], correct: 0 },
             // C2 (26-30)
-            { question: "Какое слово является синонимом к слову 'непреложный'?", answers: ["незыблемый", "изменчивый", "гибкий", "ломкий", "bilmirəm"], correct: 0 },
-            { question: "Какое слово обозначает философское понятие?", answers: ["бытие", "река", "дерево", "окно", "bilmirəm"], correct: 0 },
-            { question: "Какой термин используется для обозначения науки о языке?", answers: ["лингвистика", "биология", "физика", "география", "bilmirəm"], correct: 0 },
-            { question: "Какой стиль речи используется в официальных документах?", answers: ["официально-деловой", "разговорный", "научный", "художественный", "bilmirəm"], correct: 0 },
-            { question: "Как правильно сказать: 'Этот вопрос обсуждается ______.'?", answers: ["на собрании", "вчера", "завтра", "в прошлый раз", "bilmirəm"], correct: 0 }
+            { question: "Какой стиль речи используется в законе?", answers: ["официально-деловой", "научный", "разговорный", "художественный", "bilmirəm"], correct: 0 },
+            { question: "Какое слово является синонимом к слову 'вечный'?", answers: ["бесконечный", "временный", "краткий", "мимолётный", "bilmirəm"], correct: 0 },
+            { question: "Какое предложение является сослагательным?", answers: ["Если бы я знал, я бы пришёл.", "Я иду домой.", "Завтра будет дождь.", "Сегодня тепло.", "bilmirəm"], correct: 0 },
+            { question: "Какое слово обозначает философское понятие?", answers: ["бытие", "окно", "дерево", "река", "bilmirəm"], correct: 0 },
+            { question: "Как перевести 'на улице идёт дождь'?", answers: ["Çöldə yağış yağır.", "Çöldə külək əsir.", "Çöldə günəş var.", "Çöldə hava soyuqdur.", "bilmirəm"], correct: 0 }
         ];
 
         let currentQuestion = 0;
@@ -163,17 +163,17 @@
             const resultDiv = document.getElementById('result');
             resultDiv.style.display = 'block';
 
-            if (correctAnswers <= 5) resultDiv.textContent = `Ваш уровень: A1 (${correctAnswers}/30 правильных)`;
-            else if (correctAnswers <= 10) resultDiv.textContent = `Ваш уровень: A2 (${correctAnswers}/30 правильных)`;
-            else if (correctAnswers <= 15) resultDiv.textContent = `Ваш уровень: B1 (${correctAnswers}/30 правильных)`;
-            else if (correctAnswers <= 20) resultDiv.textContent = `Ваш уровень: B2 (${correctAnswers}/30 правильных)`;
-            else if (correctAnswers <= 25) resultDiv.textContent = `Ваш уровень: C1 (${correctAnswers}/30 правильных)`;
-            else resultDiv.textContent = `Ваш уровень: C2 (${correctAnswers}/30 правильных)`;
+            if (correctAnswers <= 5) resultDiv.textContent = `Səviyyəniz: A1 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
+            else if (correctAnswers <= 10) resultDiv.textContent = `Səviyyəniz: A2 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
+            else if (correctAnswers <= 15) resultDiv.textContent = `Səviyyəniz: B1 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
+            else if (correctAnswers <= 20) resultDiv.textContent = `Səviyyəniz: B2 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
+            else if (correctAnswers <= 25) resultDiv.textContent = `Səviyyəniz: C1 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
+            else resultDiv.textContent = `Səviyyəniz: C2 (${correctAnswers}/30 doğru). Ulduz Qasımova - Rus dilini mənimlə örgən.`;
 
             document.getElementById('quiz-form').style.display = 'none';
         }
 
-        showNextQuestion(); // Показываем первый вопрос
+        showNextQuestion();
     </script>
 </body>
 </html>
