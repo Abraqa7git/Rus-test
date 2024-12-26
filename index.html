@@ -61,6 +61,14 @@
     <div id="result" class="result" style="display: none;"></div>
 
     <script>
+        // Функция для перемешивания массива
+        function shuffleArray(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
         const questions = [
             // A1 (1-5)
             { question: "Какое слово обозначает предмет мебели?", answers: ["стол", "яблоко", "ручка", "окно", "bilmirəm"], correct: 0 },
@@ -94,11 +102,16 @@
             { question: "Какое из предложений является сложным?", answers: ["Я люблю читать, потому что это интересно.", "Я читаю книгу.", "Он работает.", "Мы гуляем.", "bilmirəm"], correct: 4 },
             // C2 (26-30)
             { question: "Какое слово обозначает философское понятие?", answers: ["бытие", "окно", "река", "яблоко", "bilmirəm"], correct: 0 },
-            { question: "Какой термин обозначает науку о языке?", answers: ["лингвистика", "биология", "физика", "философия", "bilmirəm"], correct: 1 },
-            { question: "Какое слово является синонимом к слову 'вечный'?", answers: ["бесконечный", "временный", "короткий", "мимолётный", "bilmirəm"], correct: 2 },
-            { question: "Какое слово обозначает результат?", answers: ["итог", "начало", "середина", "вопрос", "bilmirəm"], correct: 3 },
-            { question: "Как перевести 'дождь идёт' на азербайджанский язык?", answers: ["Yağış yağır.", "Günəş çıxır.", "Qar yağır.", "Hava buludludur.", "bilmirəm"], correct: 4 }
+            { question: "Какой термин обозначает науку о языке?", answers: ["лингвистика", "физика", "математика", "химия", "bilmirəm"], correct: 1 },
+            { question: "Как правильно сказать: 'Если бы я мог, я бы...'?", answers: ["помог", "помогать", "помогал", "помогали", "bilmirəm"], correct: 2 },
+            { question: "Какой вариант грамматически правильный?", answers: ["Я бы сказал правду.", "Я скажу правду.", "Я сказал правду.", "Я сказать правду.", "bilmirəm"], correct: 3 },
+            { question: "Как перевести 'это не моя ошибка' на азербайджанский язык?", answers: ["Bu, mənim səhvim deyil.", "Bu, mənim işim deyil.", "Bu, mənim yolum deyil.", "Bu, mənim fikrim deyil.", "bilmirəm"], correct: 4 }
         ];
+
+        // Перемешиваем ответы для каждого вопроса
+        questions.forEach(question => {
+            shuffleArray(question.answers);
+        });
 
         let currentQuestionIndex = 0;
         let correctAnswers = 0;
@@ -114,14 +127,12 @@
             questionHtml += `</div></div>`;
             document.getElementById("questions").innerHTML = questionHtml;
             
-            // Show the "Next Question" button only after the question is loaded
             if (currentQuestionIndex === questions.length - 1) {
-                document.querySelector("#controls button:nth-child(2)").style.display = "block"; // Show the finish button
+                document.querySelector("#controls button:nth-child(2)").style.display = "block";
             }
         }
 
         function calculateResult() {
-            // Calculate correct answers
             const answers = document.querySelectorAll("input[type='radio']:checked");
             answers.forEach(answer => {
                 const questionIndex = parseInt(answer.name.replace("question", ""));
@@ -149,7 +160,6 @@
             document.getElementById("result").innerHTML = `Ваш уровень: ${level}. Правильных ответов: ${correctAnswers}`;
         }
 
-        // Initial function to show the first question
         showNextQuestion();
     </script>
 </body>
