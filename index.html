@@ -17,7 +17,6 @@
         }
         .question {
             margin-bottom: 15px;
-            display: none;
         }
         .answers {
             margin-left: 20px;
@@ -54,8 +53,8 @@
             <!-- Вопросы будут добавлены через JavaScript -->
         </div>
         <div id="controls" style="text-align: center;">
-            <button type="button" onclick="showNextQuestion()">Следующий вопрос</button>
-            <button type="button" onclick="calculateResult()" style="display: none;">Завершить тест</button>
+            <button type="button" id="next-button" onclick="showNextQuestion()">Следующий вопрос</button>
+            <button type="button" id="finish-button" onclick="calculateResult()" style="display: none;">Завершить тест</button>
         </div>
     </form>
     <div id="result" class="result" style="display: none;"></div>
@@ -97,7 +96,7 @@
             { question: "Какой термин обозначает науку о языке?", answers: ["лингвистика", "биология", "физика", "философия", "bilmirəm"], correct: 0 },
             { question: "Какое слово является синонимом к слову 'вечный'?", answers: ["бесконечный", "временный", "короткий", "мимолётный", "bilmirəm"], correct: 0 },
             { question: "Какое слово обозначает результат?", answers: ["итог", "начало", "середина", "вопрос", "bilmirəm"], correct: 0 },
-            { question: "Как перевести 'дождь идёт' на азербайджанский язык?", answers: ["Yağış yağıyor.", "Yağış yağır.", "Yağış var.", "Yağış gəlir.", "bilmirəm"], correct: 0 }
+            { question: "Как перевести 'дождь идёт' на азербайджанский язык?", answers: ["Yağış yağır.", "Yağış gedir.", "Yağış gəlir.", "Yağış kəsilir.", "bilmirəm"], correct: 0 }
         ];
 
         let currentQuestionIndex = 0;
@@ -122,10 +121,11 @@
 
             currentQuestionIndex++;
             if (currentQuestionIndex < questions.length) {
-                document.querySelector("button").innerText = "Следующий вопрос";
+                document.getElementById("next-button").innerText = "Следующий вопрос";
+                document.getElementById("finish-button").style.display = "none";
             } else {
-                document.querySelector("button").style.display = "none";
-                document.querySelector("button[type='button']:last-child").style.display = "inline-block";
+                document.getElementById("next-button").style.display = "none";
+                document.getElementById("finish-button").style.display = "inline-block";
             }
         }
 
