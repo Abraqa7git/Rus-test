@@ -100,48 +100,47 @@
             { question: "Как перевести 'дождь идёт' на азербайджанский язык?", answers: ["Yağış yağıyor.", "Yağış yağır.", "Yağış var.", "Yağış gəlir.", "bilmirəm"], correct: 0 }
         ];
 
-        let currentQuestion = 0;
-        let correctAnswers = 0;
+        let currentQuestionIndex = 0;
+        let score = 0;
 
         function showNextQuestion() {
-            if (currentQuestion < questions.length) {
-                const question = questions[currentQuestion];
-                const questionElement = document.createElement('div');
-                questionElement.classList.add('question');
-                questionElement.innerHTML = `
-                    <p>${question.question}</p>
-                    <div class="answers">
-                        ${question.answers.map((answer, index) => `
-                            <label>
-                                <input type="radio" name="question${currentQuestion}" value="${index}"> ${answer}
-                            </label>
-                        `).join('')}
-                    </div>
-                `;
-                document.getElementById('questions').appendChild(questionElement);
-                currentQuestion++;
-                if (currentQuestion === questions.length) {
-                    document.querySelector('button').style.display = 'none';
-                    document.querySelectorAll('button')[1].style.display = 'block';
-                }
+            const questionContainer = document.getElementById('questions');
+            const nextQuestion = questions[currentQuestionIndex];
+
+            const questionElement = document.createElement('div');
+            questionElement.classList.add('question');
+            questionElement.innerHTML = `
+                <p>${nextQuestion.question}</p>
+                <div class="answers">
+                    ${nextQuestion.answers.map((answer, index) => `
+                        <input type="radio" name="question-${currentQuestionIndex}" value="${index}">
+                        <label>${answer}</label>
+                    `).join('')}
+                </div>
+            `;
+            questionContainer.appendChild(questionElement);
+
+            currentQuestionIndex++;
+            if (currentQuestionIndex < questions.length) {
+                document.querySelector("button").innerText = "Следующий вопрос";
+            } else {
+                document.querySelector("button").style.display = "none";
+                document.querySelector("button[type='button']:last-child").style.display = "inline-block";
             }
         }
 
         function calculateResult() {
-            const answers = document.querySelectorAll('.question');
-            answers.forEach((question, index) => {
-                const selected = question.querySelector('input:checked');
-                if (selected && parseInt(selected.value) === questions[index].correct) {
-                    correctAnswers++;
+            const form = document.forms['quiz-form'];
+            for (let i = 0; i < questions.length; i++) {
+                const selectedAnswer = form[`question-${i}`]?.value;
+                if (selectedAnswer && parseInt(selectedAnswer) === questions[i].correct) {
+                    score++;
                 }
-            });
-
-            document.getElementById('quiz-form').style.display = 'none';
+            }
             document.getElementById('result').style.display = 'block';
-            document.getElementById('result').innerHTML = `Ваш результат: ${correctAnswers} из ${questions.length}.`;
+            document.getElementById('result').innerHTML = `Вы набрали ${score} из ${questions.length} правильных ответов.`;
         }
 
-        // Начать тест с первого вопроса
         showNextQuestion();
     </script>
 </body>
